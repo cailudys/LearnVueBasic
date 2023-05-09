@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1.基本使用 插值语法里直接写保存的数据变量 -->
+      <h2>{{message}}</h2>
+
+      <!-- 2.插值语法里面 写 表达式 -->
+      <h2>计数双倍： {{cunter * 2}}</h2>
+      <h2>展示信息： {{info.split(' ')}}</h2>
+
+      <!-- 3.插值语法里写 三元运算符-->
+      <h2>{{age >= 18 ? '成年人' : '未成年'}}</h2>
+
+      <!-- 4.插值语法里面 可以直接调用methods配置项里面的方法，也可以直接拿到data函数返回的对象里的所有属性 -->
+      <h2>{{formatData(time)}}</h2>
+
+      <!-- 5.注意插值语法里面不能写语句 -->
+      <!-- <h2>{{const name = 'why'}}</h2> -->
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data: function () {
+          return {
+            message: "Hello Vue",
+            cunter: 100,
+            info: "my name is why",
+            age: 22,
+            time: 123,
+          };
+        },
+        methods: {
+          formatData(data) {
+            return data;
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>

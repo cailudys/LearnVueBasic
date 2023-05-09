@@ -7,22 +7,23 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h2>当前计数：{{counter}}</h2>
+      <button @click="increment">+1</button>
+      <button @click="decrement">-1</button>
+    </div>
 
     <script src="../lib/vue.js"></script>
     <script>
       const app = Vue.createApp({
-        template: `
-            <h2>当前计数：{{counter}}</h2>
-            <button @click='increment'>+1</button>
-            <button @click='decrement'>-1</button>
-        `,
         data: function () {
           return {
             counter: 0,
           };
         },
+        // methods 配置项
         methods: {
+          // 光从代码中看，看不出this到底指向谁，因为不知道这个函数最终是怎么被调用的。
           increment: function () {
             this.counter++;
           },
