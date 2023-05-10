@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1.基本绑定class -->
+      <h2 :class="classes">Hello Vue</h2>
+      <!-- 2.需求是当我们点击按钮，按钮就变成红色，再次点击就变成原来的颜色 -->
+      <!-- 更具需求，可以指的要使得class属性得有自动计算的能力，也就是绑定一个表达式（三元表达式）；而不是简单的绑定一个动态数据 -->
+      <button :class="isActive ? 'active' : ''" @click="btnClick">
+        我是按钮
+      </button>
+      <!-- 3.动态class 可以写对象语法; 只要我们这样写vue会自动做数据映射;用于切换是否添加对应的类名，可以同时添加多个类名。 -->
+      <button :class="{active:isActive, abc:true}" @click="btnClick">
+        我是按钮
+      </button>
+
+      <!-- 4.动态绑定的class可以和普通的class并列使用。前面的abc cba 这两个类名不会被覆盖，之后往这个基础上继续增加。 -->
+      <button
+        class="abc cba"
+        :class="{active:isActive, abc:true}"
+        @click="btnClick"
+      >
+        我是按钮
+      </button>
+
+      <!-- 数组里面是字符串则直接添加这个变量名 -->
+      <button class="['abc','cba']" @click="btnClick">我是按钮</button>
+      <!-- 数组里面不是字符串，表示是变量，会到vue的data中查找对应的值 -->
+      <button class="['abc', variable]" @click="btnClick">我是按钮</button>
+      <!-- 数组里面可以放三元运算符 -->
+      <button class="['abc', variable, isActive?'active':'']" @click="btnClick">
+        我是按钮
+      </button>
+      <!-- 数组里面可以放对象 -->
+      <button class="['abc', variable, {active:isActive}]" @click="btnClick">
+        我是按钮
+      </button>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data: function () {
+          return {
+            classes: "abc cba bac",
+            isActive: false,
+          };
+        },
+        methods: {
+          btnClick: function () {
+            this.isActive = !this.isActive;
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
