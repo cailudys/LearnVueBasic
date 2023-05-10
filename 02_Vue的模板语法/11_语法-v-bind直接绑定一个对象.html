@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2 :name="name" :age="age" :height="height">Hello World</h2>
+
+      <!-- v-bind 直接绑定对象, 就会把对象里的每一项的key当成属性绑定到html标签上 -->
+      <h2 v-bind="infos">Hello Bind</h2>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data: function () {
+          return {
+            infos: { name: "why", age: 18, height: 1.88 },
+            name: "why",
+            age: 18,
+            height: 1.88,
+          };
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
