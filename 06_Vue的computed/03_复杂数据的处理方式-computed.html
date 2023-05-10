@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1.直接通过插值语法表达式来进行处理 （这样做不太好，处理逻辑尽量不要放在模板里面） -->
+      <h2>{{ firstName + '' + lastName}}</h2>
+      <h2>{{ firstName }} {{lastName}}</h2>
+      <h2>{{fullname}}</h2>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            // 1.姓名
+            firstName: "kobe",
+            lastName: "bryant",
+
+            // 2.分数
+            score: 80,
+
+            // 3.文本 反转显示
+            message: "my name is why",
+          };
+        },
+        computed: {
+          //
+          fullname() {
+            return this.firstName + " " + this.lastName;
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>

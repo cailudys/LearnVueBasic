@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1. 当我们什么都不传入的时候，vue调用时会默认擦混入event对象 -->
+      <button @click="but1Click">按钮1</button>
+
+      <!-- 注意：在vue模板里面，but1Click('why',18)这样的写法不能理解为常见的函数调用，vue对模板中的这样的写法有特殊的处理这样写并不是函数的调用，而是执行时传入指定的自定义数据。 -->
+      <!-- 2.当传入明确参数的时候，vue调用时只传入了自己明确的参数，没有传入event对象 -->
+      <button @click="but2Click('why',18)">按钮2</button>
+
+      <!-- 那么如果既想要有明确的参数，还想要有vue传递的event对象，该怎么弄？ -->
+      <!-- 可以使用嵌套函数，这样vue调用外层函数的时候就会默认传入event,然后我们在外层函数体把拿到的enet传入到内层函数里并执行 -->
+      <button @click="(event)=>{but3Click('why',18,event)}">按钮3</button>
+      <!-- 还有一种固定的写法，使用$event -->
+      <button @click="but3Click('why',18,$event)">按钮3</button>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data: function () {
+          return {
+            message: "Hello Vue",
+          };
+        },
+        methods: {
+          but1Click(event) {
+            console.log("but1Click：", event);
+          },
+
+          but2Click(name, age) {
+            console.log(name, age);
+          },
+
+          but3Click(name, age, event) {
+            console.log(name, age, event);
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>

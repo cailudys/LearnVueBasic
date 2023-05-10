@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="info" v-if="Object.keys(info).length === 1">
+        <h2>个人信息</h2>
+        <ul>
+          <li>姓名：{{info.name}}</li>
+          <li>年龄：{{info.age}}</li>
+        </ul>
+      </div>
+
+      <div v-else-if="Object.keys(info).length > 1">
+        <h2>信息数大于1</h2>
+      </div>
+
+      <div v-else>
+        <h2>个人信息</h2>
+        <p>请输入个人信息后，再刷新页面</p>
+      </div>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            info: {
+              name: "xxx",
+              age: 18,
+            },
+          };
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
