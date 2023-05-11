@@ -42,7 +42,12 @@
             <td>{{ item.date }}</td>
             <td>{{ item.price }}</td>
             <td>
-              <button @click="decrement(index)">-</button>
+              <button
+                @click="decrement(index)"
+                v-bind:disabled="item.count <= 1"
+              >
+                -
+              </button>
               {{item.count}}
               <button @click="increment(index)">+</button>
             </td>
