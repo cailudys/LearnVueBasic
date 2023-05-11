@@ -8,9 +8,6 @@
   </head>
   <body>
     <div id="app">
-      <!-- 1.直接通过插值语法表达式来进行处理 （这样做不太好，处理逻辑尽量不要放在模板里面） -->
-      <h2>{{ firstName + '' + lastName}}</h2>
-      <h2>{{ firstName }} {{lastName}}</h2>
       <h2>{{fullname}}</h2>
     </div>
 
@@ -32,7 +29,7 @@
         },
         // 计算属性
         computed: {
-          //
+          // 语法糖的写法
           fullname() {
             return this.firstName + " " + this.lastName;
           },
