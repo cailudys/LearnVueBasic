@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input id="myInput" type="text" value="Old value" />
+      <button onclick="changeValue()">修改input的value</button>
+    </div>
+
+    <script>
+      function changeValue() {
+        console.log("执行了");
+        var inputElement = document.getElementById("myInput");
+        inputElement.value = "New value";
+      }
+    </script>
+  </body>
+</html>

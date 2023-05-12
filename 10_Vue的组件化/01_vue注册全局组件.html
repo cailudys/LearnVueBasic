@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{message}}</h2>
+
+      <product-item></product-item>
+      <product-item></product-item>
+      <product-item></product-item>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+      // 这个 App 本质就是一个组件，而且是一个根组件。
+      const App = {
+        data() {
+          return {
+            message: "Hello Vue",
+          };
+        },
+      };
+
+      const app = Vue.createApp(App);
+
+      // 创建一个组件
+      // 1.创建一个组件对象
+      const productItem = {
+        template: `
+        <div class="product">
+        <h2>我是商品</h2>
+        <div>商品图片</div>
+        <div>商品价格：</div>
+        <p>商品描述信息，9.9秒杀</p>
+      </div>
+        `,
+      };
+
+      // 2.注册一个全局组件
+      app.component("product-item", productItem);
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
